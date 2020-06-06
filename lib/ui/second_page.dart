@@ -54,21 +54,21 @@ class _SecondPageState extends State<SecondPage> {
         child: AnimatedContainer(
           height: _height,
           width: _width,
-          child: MaterialButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            color: Colors.deepPurple,
-            onLongPress: () {
-              debugPrint('long pressed');
-            },
-            splashColor: Colors.white,
-            child: Text(
-              'First Page',
-              style:
-              TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-          ),
+//          child: MaterialButton(
+//            onPressed: () {
+//              Navigator.of(context).pop();
+//            },
+//            color: Colors.deepPurple,
+//            onLongPress: () {
+//              debugPrint('long pressed');
+//            },
+//            splashColor: Colors.white,
+//            child: Text(
+//              'First Page',
+//              style:
+//              TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+//            ),
+//          ),
           decoration: BoxDecoration(
             color: _color,
             borderRadius: _borderRadiusGeometry,
