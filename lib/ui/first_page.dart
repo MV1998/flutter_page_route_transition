@@ -26,7 +26,7 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
+      body: DraggableCard(
         child: MaterialButton(
           onPressed: () {
             Navigator.of(context).push(_createRoute(_animationController));
@@ -68,4 +68,33 @@ Route _createRoute(AnimationController animationController) {
       );
     },
   );
+}
+
+class DraggableCard extends StatefulWidget {
+  final Widget child;
+  
+  DraggableCard({this.child});
+  
+  @override
+  _DraggableCardState createState() => _DraggableCardState();
+}
+
+class _DraggableCardState extends State<DraggableCard> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      child: widget.child,
+    );
+  }
 }
