@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutterpageroutetransition/utilities/web_services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'ui/first_page.dart';
 
 void main() {
+
+  print('${WebServices.baseURL}/${WebServices.networkURL}');
   runApp(MyApp());
 }
 

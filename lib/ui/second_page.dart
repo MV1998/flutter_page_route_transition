@@ -58,7 +58,7 @@ class _SecondPageState extends State<SecondPage> {
             borderRadius: _borderRadiusGeometry,
           ),
           duration: duration,
-          curve: Curves.ease,
+          curve: Curves.bounceOut,
         ),
       ),
     );

@@ -1,7 +1,17 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+/// create a visual Login page on the screen
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  StreamController<String> controller = StreamController<String>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,7 +21,10 @@ class LoginPage extends StatelessWidget {
 //      ),
       body: Stack(
         alignment: Alignment.center,
+
+        /// Stack for overlapping widget
         children: <Widget>[
+          /// Create visual background image as first item in stack
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
@@ -22,6 +35,7 @@ class LoginPage extends StatelessWidget {
                     image: NetworkImage(
                         'https://source.unsplash.com/user/erondu/1600x900'))),
           ),
+          //Create
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
@@ -44,6 +58,13 @@ class LoginPage extends StatelessWidget {
                         border: OutlineInputBorder(),
                         hintText: 'Name',
                         helperText: 'e. g. Mohit Varma'),
+                    onSubmitted: (data) {
+                      controller.add(data);
+                      Stream stream = controller.stream;
+                      stream.listen((event) {
+                        print(event);
+                      });
+                    },
                   ),
                   SizedBox(
                     height: 10,
