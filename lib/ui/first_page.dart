@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../ui/form.dart';
 
 import '../ui/draggable_card.dart';
 import '../ui/drawer.dart';
@@ -18,29 +19,53 @@ class FirstPage extends StatefulWidget {
 class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      key: widget.globalKey,
-      drawer: AppDrawer(
-        widget: widget,
-        tickerProvider: this,
-      ),
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: DraggableCard(
-        child: MaterialButton(
-          onPressed: () {
-            Navigator.of(context).push(_createRoute());
-          },
-          color: Colors.deepPurple,
-          onLongPress: () {
-            debugPrint('long pressed');
-          },
-          splashColor: Colors.white,
-          child: Text(
-            'Second Page',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        key: widget.globalKey,
+        drawer: AppDrawer(
+          widget: widget,
+          tickerProvider: this,
+        ),
+        appBar: AppBar(
+          bottom: TabBar(
+            tabs: <Widget>[
+              Tab(
+                icon: Icon(Icons.email),
+                text: 'Draggable',
+              ),
+              Tab(
+                icon: Icon(Icons.add),
+              ),
+              Tab(
+                icon: Icon(Icons.settings),
+              )
+            ],
           ),
+          title: Text(widget.title),
+        ),
+        body: TabBarView(
+          children: <Widget>[
+            DraggableCard(
+              child: MaterialButton(
+                onPressed: () {
+                  Navigator.of(context).push(_createRoute());
+                },
+                color: Colors.deepPurple,
+                onLongPress: () {
+                  debugPrint('long pressed');
+                },
+                splashColor: Colors.white,
+                child: Text(
+                  'Second Page',
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+            MyCustomForm(),
+            Center(child: Text('add')),
+          ],
         ),
       ),
     );
