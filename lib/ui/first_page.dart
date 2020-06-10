@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../ui/bloc_pattern_implemented_screen.dart';
+import '../ui/button_screen.dart';
 import '../ui/draggable_card.dart';
 import '../ui/drawer.dart';
 import '../ui/form.dart';
 import '../ui/second_page.dart';
-import '../ui/bloc_pattern_implemented_screen.dart';
 
 class FirstPage extends StatefulWidget {
   final String title;
@@ -19,9 +20,14 @@ class FirstPage extends StatefulWidget {
 
 class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 4,
       child: Scaffold(
         key: widget.globalKey,
         drawer: AppDrawer(
@@ -52,16 +58,19 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
             )
           ],
           bottom: TabBar(
+            isScrollable: true,
             tabs: <Widget>[
               Tab(
-                icon: Icon(Icons.email),
                 text: 'Draggable',
               ),
               Tab(
-                icon: Icon(Icons.add),
+                text: 'TextField',
               ),
               Tab(
-                icon: Icon(Icons.settings),
+                text: 'TextFieldWithListView',
+              ),
+              Tab(
+                text: 'Buttons',
               )
             ],
           ),
@@ -87,7 +96,8 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
               ),
             ),
             MyCustomForm(),
-            BLoCPattern()
+            BLoCPattern(),
+            CustomButton()
           ],
         ),
       ),

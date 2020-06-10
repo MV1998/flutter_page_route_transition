@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class MyCustomForm extends StatefulWidget {
   @override
@@ -8,8 +9,23 @@ class MyCustomForm extends StatefulWidget {
 
 class _MyCustomFormState extends State<MyCustomForm> {
   final _formKey = GlobalKey<FormState>();
+
   String _email;
   String _password;
+  FocusNode _focusNode;
+  FocusNode _passwordNode;
+
+  TextEditingController _textEditingController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode = FocusNode();
+    _passwordNode = FocusNode();
+    _textEditingController.addListener(() {
+      print('editing ${_textEditingController.text}');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +37,8 @@ class _MyCustomFormState extends State<MyCustomForm> {
           child: Column(
             children: <Widget>[
               TextFormField(
+                controller: _textEditingController,
+                focusNode: _focusNode,
                 onTap: () {
                   print('on tap');
                 },
@@ -39,6 +57,7 @@ class _MyCustomFormState extends State<MyCustomForm> {
                 },
                 validator: (value) {
                   if (value.isEmpty) {
+                    _focusNode.requestFocus();
                     return 'Enter Email Address';
                   }
                   return null;
@@ -56,11 +75,13 @@ class _MyCustomFormState extends State<MyCustomForm> {
                 height: 10,
               ),
               TextFormField(
+                focusNode: _passwordNode,
                 onChanged: (value) {
                   _password = value;
                 },
                 validator: (value) {
                   if (value.isEmpty) {
+                    _passwordNode.requestFocus();
                     return 'Enter Password';
                   }
                   return null;
@@ -108,9 +129,39 @@ class _MyCustomFormState extends State<MyCustomForm> {
 //              ),
                 onPressed: () {
                   if (_formKey.currentState.validate()) {
-                    Scaffold.of(context).showSnackBar(SnackBar(
-                      content: Text('Processing data $_email and $_password'),
-                    ));
+//                    Scaffold.of(context).showSnackBar(SnackBar(
+//                      content: Text('Processing data $_email and $_password'),
+//                    ));
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            title: Text('Information'),
+                            titleTextStyle: GoogleFonts.abel(
+                                textStyle: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.black,
+                                    fontStyle: FontStyle.normal,
+                                    fontWeight: FontWeight.bold)),
+                            backgroundColor: Colors.deepPurple[100],
+                            shape: BeveledRectangleBorder(
+                                side: BorderSide(
+                                    color: Colors.black12,
+                                    width: 1,
+                                    style: BorderStyle.solid),
+                                borderRadius: BorderRadius.circular(10)),
+                            content: Text(
+                              '$_email and $_password',
+                              style: GoogleFonts.abel(
+                                  textStyle: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.black,
+                                      fontStyle: FontStyle.normal,
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          );
+                        });
                     FocusScope.of(context).unfocus();
                   }
                 },
@@ -127,5 +178,13 @@ class _MyCustomFormState extends State<MyCustomForm> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    _passwordNode.dispose();
+    _textEditingController.dispose();
+    super.dispose();
   }
 }
