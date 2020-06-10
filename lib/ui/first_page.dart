@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../ui/form.dart';
 
 import '../ui/draggable_card.dart';
 import '../ui/drawer.dart';
+import '../ui/form.dart';
 import '../ui/second_page.dart';
+import '../ui/bloc_pattern_implemented_screen.dart';
 
 class FirstPage extends StatefulWidget {
   final String title;
@@ -28,6 +29,28 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
           tickerProvider: this,
         ),
         appBar: AppBar(
+          actions: <Widget>[
+            PopupMenuButton(
+              itemBuilder: (context) => <PopupMenuEntry<String>>[
+                const PopupMenuItem<String>(
+                  value: 'vlaue',
+                  child: Text('Working a lot harder'),
+                ),
+                const PopupMenuItem<String>(
+                  value: 'vlaue',
+                  child: Text('Being a lot smarter'),
+                ),
+                const PopupMenuItem<String>(
+                  value: 'vlaue',
+                  child: Text('Being a self-starter'),
+                ),
+                const PopupMenuItem<String>(
+                  value: 'vlaue',
+                  child: Text('Placed in charge of trading charter'),
+                ),
+              ],
+            )
+          ],
           bottom: TabBar(
             tabs: <Widget>[
               Tab(
@@ -64,7 +87,7 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
               ),
             ),
             MyCustomForm(),
-            Center(child: Text('add')),
+            BLoCPattern()
           ],
         ),
       ),
