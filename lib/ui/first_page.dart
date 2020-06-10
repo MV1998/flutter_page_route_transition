@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterpageroutetransition/routes/swipe_to_dismiss.dart';
 
 import '../ui/bloc_pattern_implemented_screen.dart';
 import '../ui/button_screen.dart';
@@ -37,10 +38,21 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
         appBar: AppBar(
           actions: <Widget>[
             PopupMenuButton(
+              onSelected: (value) {
+                switch (value){
+                  case 'SwipeToDismiss':
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) {
+                        return SwipeToDismiss();
+                      }
+                    ));
+                    break;
+                }
+              },
               itemBuilder: (context) => <PopupMenuEntry<String>>[
                 const PopupMenuItem<String>(
-                  value: 'vlaue',
-                  child: Text('Working a lot harder'),
+                  value: 'SwipeToDismiss',
+                  child: Text('SwipeToDismiss'),
                 ),
                 const PopupMenuItem<String>(
                   value: 'vlaue',
