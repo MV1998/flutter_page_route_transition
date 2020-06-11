@@ -55,8 +55,8 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
                   child: Text('SwipeToDismiss'),
                 ),
                 const PopupMenuItem<String>(
-                  value: 'vlaue',
-                  child: Text('Being a lot smarter'),
+                  value: 'InternetImages',
+                  child: Text('Image From Internet'),
                 ),
                 const PopupMenuItem<String>(
                   value: 'vlaue',
