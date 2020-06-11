@@ -13,6 +13,7 @@ class _SwipeToDismissState extends State<SwipeToDismiss> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.deepPurple,
         title: Text('SwipeToDismiss'),
       ),
       body: ListView.builder(

@@ -14,6 +14,9 @@ class _BLoCPatternState extends State<BLoCPattern> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          
+        },
         backgroundColor: Colors.deepPurple,
         child: Icon(Icons.add),
       ),
