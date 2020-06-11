@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterpageroutetransition/routes/swipe_to_dismiss.dart';
 
+import '../routes/app_grid_list.dart';
+import '../routes/floating_app_bar_screen.dart';
+import '../routes/image_from_internet.dart';
+import '../routes/swipe_to_dismiss.dart';
 import '../ui/bloc_pattern_implemented_screen.dart';
 import '../ui/button_screen.dart';
 import '../ui/draggable_card.dart';
@@ -39,13 +42,30 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
           actions: <Widget>[
             PopupMenuButton(
               onSelected: (value) {
-                switch (value){
+                switch (value) {
                   case 'SwipeToDismiss':
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) {
-                        return SwipeToDismiss();
-                      }
-                    ));
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return SwipeToDismiss();
+                    }));
+                    break;
+                  case 'InternetImages':
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return InternetImageScreen();
+                    }));
+                    break;
+                  case 'GridList':
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return AppGridList();
+                    }));
+                    break;
+                  case 'FloatingAppBar':
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return FloatingAppBarScreen();
+                    }));
                     break;
                 }
               },
@@ -59,12 +79,12 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
                   child: Text('Image From Internet'),
                 ),
                 const PopupMenuItem<String>(
-                  value: 'vlaue',
-                  child: Text('Being a self-starter'),
+                  value: 'GridList',
+                  child: Text('GridList'),
                 ),
                 const PopupMenuItem<String>(
-                  value: 'vlaue',
-                  child: Text('Placed in charge of trading charter'),
+                  value: 'FloatingAppBar',
+                  child: Text('FloatingAppBar'),
                 ),
               ],
             )
