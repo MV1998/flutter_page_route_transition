@@ -10,6 +10,7 @@ import '../ui/button_screen.dart';
 import '../ui/draggable_card.dart';
 import '../ui/drawer.dart';
 import '../ui/form.dart';
+import '../ui/my_hero.dart';
 import '../ui/second_page.dart';
 
 class FirstPage extends StatefulWidget {
@@ -31,7 +32,7 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 4,
+      length: 5,
       child: Scaffold(
         key: widget.globalKey,
         drawer: AppDrawer(
@@ -103,6 +104,9 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
               ),
               Tab(
                 text: 'Buttons',
+              ),
+              Tab(
+                text: 'MyHero',
               )
             ],
           ),
@@ -129,7 +133,8 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
             ),
             MyCustomForm(),
             BLoCPattern(),
-            CustomButton()
+            CustomButton(),
+            MyHero()
           ],
         ),
       ),
