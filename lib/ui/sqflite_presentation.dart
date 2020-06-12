@@ -29,6 +29,17 @@ class _SqfLitePresentationState extends State<SqfLitePresentation> {
           Expanded(
             flex: 0,
             child: RaisedButton(
+              onPressed: () {
+                setState(() {
+                  future = specialData();
+                });
+              },
+              child: Text('less than 500'),
+            ),
+          ),
+          Expanded(
+            flex: 0,
+            child: RaisedButton(
               color: Colors.deepPurple,
               onPressed: () {
                 setState(() {

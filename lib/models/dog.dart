@@ -62,3 +62,15 @@ Future<void> deleteDog(int id) async {
   final Database db = await database();
   await db.delete('dogs', where: 'id = ?', whereArgs: [id]);
 }
+
+Future<List<Dog>> specialData() async{
+  final Database db = await database();
+  final List<Map<String, dynamic>> maps = await  db.rawQuery('SELECT * FROM dogs WHERE age <= 500');
+  return List.generate(maps.length, (i) {
+    return Dog(
+      id: maps[i]['id'],
+      name: maps[i]['name'],
+      age: maps[i]['age'],
+    );
+  });
+}
