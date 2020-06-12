@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterpageroutetransition/ui/sqflite_presentation.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../routes/login.dart';
@@ -31,7 +32,7 @@ class AppDrawer extends StatelessWidget {
             accountEmail: Text(
               'mv501049@gmail.com',
               style:
-              GoogleFonts.lato(textStyle: TextStyle(color: Colors.black)),
+                  GoogleFonts.lato(textStyle: TextStyle(color: Colors.black)),
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
@@ -42,7 +43,7 @@ class AppDrawer extends StatelessWidget {
                 colors: [const Color(0xFFFFFFEE), const Color(0xFF999999)],
                 // whitish to gray
                 tileMode:
-                TileMode.repeated, // repeats the gradient over the canvas
+                    TileMode.repeated, // repeats the gradient over the canvas
               ),
             ),
           ),
@@ -78,9 +79,32 @@ class AppDrawer extends StatelessWidget {
             color: Colors.black,
             thickness: .2,
           ),
-          StackListTile()
+          StackListTile(),
+          SqfLiteListTile(),
         ],
       ),
+    );
+  }
+}
+
+class SqfLiteListTile extends StatelessWidget {
+  const SqfLiteListTile({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Icon(Icons.message),
+      title: Text(
+        'SqfLite Presentation',
+        style: GoogleFonts.lato(),
+      ),
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return SqfLitePresentation();
+        }));
+      },
     );
   }
 }
