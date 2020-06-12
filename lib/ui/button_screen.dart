@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterpageroutetransition/ui/sentry_example.dart';
 
 class CustomButton extends StatelessWidget {
   @override
@@ -71,7 +72,8 @@ class CustomButton extends StatelessWidget {
           CupertinoButton(
             child: Text('Apple'),
             onPressed: () {},
-          )
+          ),
+          SentryExample()
         ],
       ),
     );

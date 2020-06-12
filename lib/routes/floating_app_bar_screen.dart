@@ -17,7 +17,7 @@ class _FloatingAppBarScreenState extends State<FloatingAppBarScreen> {
             SliverAppBar(
               title: Text('Floating app bar'),
               floating: true,
-              backgroundColor: Colors.amber,
+              centerTitle: true,
               expandedHeight: 200,
               flexibleSpace: Stack(
                 fit: StackFit.expand,
@@ -35,7 +35,7 @@ class _FloatingAppBarScreenState extends State<FloatingAppBarScreen> {
             SliverList(
               delegate: SliverChildBuilderDelegate(
                   (context, index) => ListTile(title: Text('$index'),),
-                childCount: 100
+                childCount: 1000
               ),
             )
           ],
