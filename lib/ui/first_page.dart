@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterpageroutetransition/ui/fetch_data_from_internet.dart';
 
 import '../routes/app_grid_list.dart';
 import '../routes/floating_app_bar_screen.dart';
@@ -42,7 +43,7 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 5,
+      length: 6,
       child: Scaffold(
         key: widget.globalKey,
         drawer: AppDrawer(
@@ -117,6 +118,9 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
               ),
               Tab(
                 text: 'MyHero',
+              ),
+              Tab(
+                text: 'Internet Data',
               )
             ],
           ),
@@ -144,7 +148,8 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
             MyCustomForm(),
             BLoCPattern(),
             CustomButton(),
-            MyHero()
+            MyHero(),
+            MyInternetData()
           ],
         ),
       ),
