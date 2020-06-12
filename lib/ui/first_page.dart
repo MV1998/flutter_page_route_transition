@@ -24,9 +24,19 @@ class FirstPage extends StatefulWidget {
 }
 
 class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
+//  startTime() async {
+//    var _duration = new Duration(seconds: 5);
+//     new Timer(_duration, navigationPage);
+//  }
+//
+//  void navigationPage() {
+//    Navigator.of(context).pushReplacementNamed('Second Page');
+//  }
+
   @override
   void initState() {
     super.initState();
+//    startTime();
   }
 
   @override
