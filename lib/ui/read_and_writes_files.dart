@@ -95,6 +95,17 @@ class _ReadAndWriteFilesState extends State<ReadAndWriteFiles> {
                           style: BorderStyle.solid),
                       borderRadius: BorderRadius.circular(10)),
                 ),
+                Center(
+                  child: FutureBuilder<Uint8List>(
+                    future: getImageData(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return Image.memory(snapshot.data);
+                      }
+                      return Center(child: CircularProgressIndicator());
+                    },
+                  ),
+                )
               ],
             ),
           ),

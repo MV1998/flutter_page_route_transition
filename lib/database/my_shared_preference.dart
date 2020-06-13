@@ -1,10 +1,12 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-class MySharedPreference{
+final String KEY = 'JSON_DATA';
 
+Future<SharedPreferences> getSharedPreference() async {
+ return await SharedPreferences.getInstance();
 }
 
-
-_addNumber() async {
- SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+Future<void> setString(String data) async {
+ final sharedPreference = await getSharedPreference();
+ sharedPreference.setString(KEY, data);
 }
