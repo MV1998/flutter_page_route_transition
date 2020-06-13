@@ -1,6 +1,8 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 
 class ReadAndWriteFiles extends StatefulWidget {
@@ -77,6 +79,7 @@ class _ReadAndWriteFilesState extends State<ReadAndWriteFiles> {
                         Future<String> contents = readCounter();
                         contents.then((value) =>
                         {_buttonText = value, _focusNode.unfocus()});
+                        saveToDisk();
                       }
                     });
                   },
@@ -106,9 +109,17 @@ Future<String> localPath() async {
   return directory.path;
 }
 
+Future<String> localDCIMPath() async {
+  final directories =
+  await getExternalStorageDirectories(type: StorageDirectory.dcim);
+  final directory = directories[0];
+  return directory.path;
+}
+
 Future<File> localFile() async {
   final path = await localPath();
-  print('$path');
+  final dcimPath = await localDCIMPath();
+  print('$dcimPath');
   return File('$path/counter.txt');
 }
 
@@ -125,4 +136,21 @@ Future<String> readCounter() async {
   } catch (e) {
     return 'some thing wrong';
   }
+}
+
+Future<File> internetImageFile() async {
+  final path = await localDCIMPath();
+  return File('$path/image.jpg');
+}
+
+Future<Uint8List> getImageData() async {
+  final response = await http.get(
+      'https://i.picsum.photos/id/134/200/300.jpg?grayscale&hmac=G7XHhkeiL7Ml4-KVEbBQQj_-Y0Bd_p8RN0K50fLUILE');
+  return response.bodyBytes;
+}
+
+Future<void> saveToDisk() async {
+  final file = await internetImageFile();
+  final data = await getImageData();
+  file.writeAsBytesSync(data);
 }
