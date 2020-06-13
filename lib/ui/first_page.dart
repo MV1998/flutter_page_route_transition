@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterpageroutetransition/ui/fetch_data_from_internet.dart';
 
 import '../routes/app_grid_list.dart';
 import '../routes/floating_app_bar_screen.dart';
@@ -10,8 +9,10 @@ import '../ui/bloc_pattern_implemented_screen.dart';
 import '../ui/button_screen.dart';
 import '../ui/draggable_card.dart';
 import '../ui/drawer.dart';
+import '../ui/fetch_data_from_internet.dart';
 import '../ui/form.dart';
 import '../ui/my_hero.dart';
+import '../ui/read_and_writes_files.dart';
 import '../ui/second_page.dart';
 
 class FirstPage extends StatefulWidget {
@@ -79,6 +80,12 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
                       return FloatingAppBarScreen();
                     }));
                     break;
+                  case 'ReadAndWriteFiles':
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return ReadAndWriteFiles();
+                    }));
+                    break;
                 }
               },
               itemBuilder: (context) => <PopupMenuEntry<String>>[
@@ -98,6 +105,10 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
                   value: 'FloatingAppBar',
                   child: Text('FloatingAppBar'),
                 ),
+                const PopupMenuItem<String>(
+                  value: 'ReadAndWriteFiles',
+                  child: Text('Read And Write Files'),
+                )
               ],
             )
           ],
