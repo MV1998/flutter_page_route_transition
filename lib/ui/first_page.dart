@@ -1,5 +1,8 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterpageroutetransition/ui/all_files_read.dart';
+import '../ui/my_camera.dart';
 
 import '../routes/app_grid_list.dart';
 import '../routes/floating_app_bar_screen.dart';
@@ -93,6 +96,26 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
                       return MyVideoPlayer();
                     }));
                     break;
+                  case 'MyCamera':
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return FutureBuilder<CameraDescription>(
+                        future: appCamera(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData){
+                            return MyCamera(camera: snapshot.data);
+                          }
+                          return CircularProgressIndicator();
+                        },
+                      );
+                    }));
+                    break;
+                  case 'AllFiles':
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return AllFilesDisplay();
+                    }));
+                    break;
                 }
               },
               itemBuilder: (context) => <PopupMenuEntry<String>>[
@@ -119,6 +142,14 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
                 const PopupMenuItem<String>(
                   value: 'VideoPlayer',
                   child: Text('Video Player'),
+                ),
+                const PopupMenuItem<String>(
+                  value: 'MyCamera',
+                  child: Text('My Camera'),
+                ),
+                const PopupMenuItem<String>(
+                  value: 'AllFiles',
+                  child: Text('Display All Images'),
                 ),
               ],
             )
@@ -201,4 +232,10 @@ Route _createRoute() {
       );
     },
   );
+}
+
+Future<CameraDescription> appCamera() async {
+  final camerasList = await availableCameras();
+  final firstCamera = camerasList.first;
+  return firstCamera;
 }
