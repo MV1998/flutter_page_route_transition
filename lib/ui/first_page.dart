@@ -12,6 +12,7 @@ import '../ui/drawer.dart';
 import '../ui/fetch_data_from_internet.dart';
 import '../ui/form.dart';
 import '../ui/my_hero.dart';
+import '../ui/my_video_player.dart';
 import '../ui/read_and_writes_files.dart';
 import '../ui/second_page.dart';
 
@@ -86,6 +87,12 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
                       return ReadAndWriteFiles();
                     }));
                     break;
+                  case 'VideoPlayer':
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
+                      return MyVideoPlayer();
+                    }));
+                    break;
                 }
               },
               itemBuilder: (context) => <PopupMenuEntry<String>>[
@@ -108,7 +115,11 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
                 const PopupMenuItem<String>(
                   value: 'ReadAndWriteFiles',
                   child: Text('Read And Write Files'),
-                )
+                ),
+                const PopupMenuItem<String>(
+                  value: 'VideoPlayer',
+                  child: Text('Video Player'),
+                ),
               ],
             )
           ],
