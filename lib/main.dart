@@ -4,7 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'ui/first_page.dart';
 import 'utilities/web_services.dart';
 
+import 'package:test/test.dart';
+
 void main() {
+
   print('${WebServices.baseURL}/${WebServices.networkURL}');
   runApp(MyApp());
 }
