@@ -41,14 +41,13 @@ class _AllFilesDisplayState extends State<AllFilesDisplay> {
         future: future,
         builder: (context, snapshot) {
           if (snapshot.hasData){
-           return ListView.builder(
-              itemCount: snapshot.data.length,
-              itemBuilder: (context, index) {
-                return Image.memory(snapshot.data[index]);
-              },
-            );
+           return GridView.count(
+             crossAxisCount: 2,
+             children: List.generate(snapshot.data.length, (index) => Padding(padding : EdgeInsets.all(5),child: Image.memory(snapshot.data[index]))),
+           );
           }
-          return Center(child: ListView.builder(
+          return Center(
+            child: ListView.builder(
               itemCount: file.length,
               itemBuilder: (BuildContext context, int index) {
                 return Text(file[index].toString());
@@ -84,3 +83,13 @@ Future<List<Uint8List>>  printImage() async {
 Future<Uint8List>  getUint8List(File file) async{
   return await file.readAsBytes();
 }
+
+//class MyGridView extends StatelessWidget {
+//  @override
+//  Widget build(BuildContext context) {
+//    return GridView.count(
+//        crossAxisCount: 2,
+//      children: List.generate(2, (index) => Image.memory(snapshot.data[index])),
+//    );
+//  }
+//}

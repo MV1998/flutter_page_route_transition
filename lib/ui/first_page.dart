@@ -1,19 +1,19 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterpageroutetransition/ui/all_files_read.dart';
-import '../ui/my_camera.dart';
 
 import '../routes/app_grid_list.dart';
 import '../routes/floating_app_bar_screen.dart';
 import '../routes/image_from_internet.dart';
 import '../routes/swipe_to_dismiss.dart';
+import '../ui/all_files_read.dart';
 import '../ui/bloc_pattern_implemented_screen.dart';
 import '../ui/button_screen.dart';
 import '../ui/draggable_card.dart';
 import '../ui/drawer.dart';
 import '../ui/fetch_data_from_internet.dart';
 import '../ui/form.dart';
+import '../ui/my_camera.dart';
 import '../ui/my_hero.dart';
 import '../ui/my_video_player.dart';
 import '../ui/read_and_writes_files.dart';
@@ -102,7 +102,7 @@ class _FirstPageState extends State<FirstPage> with TickerProviderStateMixin {
                       return FutureBuilder<CameraDescription>(
                         future: appCamera(),
                         builder: (context, snapshot) {
-                          if (snapshot.hasData){
+                          if (snapshot.hasData) {
                             return MyCamera(camera: snapshot.data);
                           }
                           return CircularProgressIndicator();
@@ -236,6 +236,9 @@ Route _createRoute() {
 
 Future<CameraDescription> appCamera() async {
   final camerasList = await availableCameras();
-  final firstCamera = camerasList.first;
+  for (var entiry in camerasList) {
+    print(entiry.name);
+  }
+  final firstCamera = camerasList.last;
   return firstCamera;
 }
